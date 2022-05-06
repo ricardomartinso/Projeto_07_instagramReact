@@ -1,9 +1,11 @@
 import Sugestoes from "./Sugestoes";
 
 export default function Sidebar() {
+  let username = prompt("Qual o seu username?");
+  let nameLastname = prompt("Qual o seu nome e sobrenome?");
   return (
     <div class="sidebar">
-      <Usuario username="ricardoomartins_" fullName="Ricardo Martins" />
+      <Usuario username={username} fullName={nameLastname} />
       <Sugestoes />
       <div class="links">
         Sobre • Ajuda • Imprensa • API • Carreiras • Privacidade • Termos •
