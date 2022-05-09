@@ -1,3 +1,5 @@
+import React from "react";
+
 export default function Posts() {
   return (
     <div class="posts">
@@ -14,7 +16,23 @@ export default function Posts() {
     </div>
   );
 }
+const VALOR_INICIAL_CORACAO = "heart-outline";
+const VALOR_INICIAL_COR = "black";
+
 function Post(props) {
+  const [coracao, setCoracao] = React.useState(VALOR_INICIAL_CORACAO);
+  const [cor, setCor] = React.useState(VALOR_INICIAL_COR);
+
+  function likePost(heartOutline, corPadrao) {
+    if (coracao === heartOutline && cor === corPadrao) {
+      setCoracao("heart");
+      setCor("red");
+    } else {
+      setCoracao("heart-outline");
+      setCor("black");
+    }
+  }
+
   return (
     <div class="post">
       <div class="topo">
@@ -28,13 +46,20 @@ function Post(props) {
       </div>
 
       <div class="conteudo">
-        <img src={props.imgContent} />
+        <img
+          src={props.imgContent}
+          onClick={() => likePost("heart-outline", "black")}
+        />
       </div>
 
       <div class="fundo">
         <div class="acoes">
           <div>
-            <ion-icon name="heart-outline"></ion-icon>
+            <ion-icon
+              name={coracao}
+              onClick={() => likePost("heart-outline", "black")}
+              style={{ color: cor }}
+            ></ion-icon>
             <ion-icon name="chatbubble-outline"></ion-icon>
             <ion-icon name="paper-plane-outline"></ion-icon>
           </div>
